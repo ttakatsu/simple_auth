@@ -1,0 +1,61 @@
+version: '3.2'
+
+services: 
+  auth-app:
+    build:
+      context: ./docker/web-php56
+    restart: always
+    domainname: auth-app.local
+    hostname: auth-app
+    volumes:
+      - ./auth_app:/var/www
+    environment: 
+      APACHE_DOCUMENT_ROOT: /var/www/public
+      FUEL_ENV: development
+    ports: 
+      - '8680:80'
+#    depends_on:
+#      - db
+    tty: true
+    stdin_open: true
+
+#  db:
+#    build:
+#      context: ./docker/db
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: examplepass
+#      MYSQL_USER: fuel_dev_user
+#      MYSQL_PASSWORD: secret
+#      MYSQL_DATABASE: fuel_dev
+#    ports:
+#      - '13306:3306'
+#    volumes:
+#      - type: volume
+#        source: db-data
+#        target: /var/lib/mysql
+#      - type: bind
+#        source: ./docker/db/init
+#        target: /docker-entrypoint-initdb.d
+
+#  redis:
+#    image: redis:3.2-alpine
+#    restart: always
+#    volumes:
+#      - redis-data:/data
+#    command: redis-server --appendonly yes
+  
+#  redis-commander:
+#    hostname: redis-commander
+#    image: rediscommander/redis-commander:latest
+#    restart: always
+#    environment:
+#      REDIS_HOSTS: "local0:redis:6379:0,local1:redis:6379:1,local2:redis:6379:2,local3:redis:6379:3"
+#    ports:
+#      - "18081:8081"
+
+#volumes:
+#  db-data:
+#    driver: local
+#  redis-data:
+#    driver: local
