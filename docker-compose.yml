@@ -12,6 +12,7 @@ services:
     environment: 
       APACHE_DOCUMENT_ROOT: /var/www/public
       FUEL_ENV: development
+      TZ: "Asia/Tokyo"
     ports: 
       - '8680:80'
 #    depends_on:
@@ -28,15 +29,16 @@ services:
       MYSQL_USER: fuel_dev_user
       MYSQL_PASSWORD: secret
       MYSQL_DATABASE: fuel_dev
+      TZ: "Asia/Tokyo"
     ports:
       - '23306:3306'
     volumes:
       - type: volume
         source: db-data
         target: /var/lib/mysql
-      - type: bind
-        source: ./docker/db/init
-        target: /docker-entrypoint-initdb.d
+#      - type: bind
+#        source: ./docker/db/init
+#        target: /docker-entrypoint-initdb.d
 
 #  redis:
 #    image: redis:3.2-alpine
