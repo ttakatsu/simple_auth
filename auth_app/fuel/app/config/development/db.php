@@ -26,5 +26,6 @@ return array(
 			'username' => 'fuel_dev_user',
 			'password' => 'secret',
 		),
+		'profiling'    => true,
 	),
 );

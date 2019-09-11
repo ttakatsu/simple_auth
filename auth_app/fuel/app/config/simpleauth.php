@@ -24,29 +24,29 @@ return array(
 	/**
 	 * DB connection, leave null to use default
 	 */
-	'db_connection' => null,
+	// 'db_connection' => null,
 
 	/**
 	 * DB write connection, leave null to use same value as db_connection
 	 */
-	'db_write_connection' => null,
+	// 'db_write_connection' => null,
 
 	/**
 	 * DB table name for the user table
 	 */
-	'table_name' => 'users',
+	// 'table_name' => 'users',
 
 	/**
 	 * Array, choose which columns from the users table are selected.
 	 *  must include: username, password, email, last_login,
 	 * login_hash, group & profile_fields
 	 */
-	'table_columns' => null,
+	// 'table_columns' => null,
 
 	/**
 	 * This will allow you to use the group & acl driver for non-logged in users
 	 */
-	'guest_login' => true,
+	// 'guest_login' => true,
 
 	/**
 	 * This will allow the same user to be logged in multiple times.
@@ -54,32 +54,32 @@ return array(
 	 * Note that this is less secure, as session hijacking countermeasures have to
 	 * be disabled for this to work!
 	 */
-	'multiple_logins' => false,
+	// 'multiple_logins' => false,
 
 	/**
 	 * Remember-me functionality
 	 */
-	'remember_me' => array(
+	// 'remember_me' => array(
 		/**
 		 * Whether or not remember me functionality is enabled
 		 */
-		'enabled' => false,
+		// 'enabled' => false,
 
 		/**
 		 * Name of the cookie used to record this functionality
 		 */
-		'cookie_name' => 'rmcookie',
+		// 'cookie_name' => 'rmcookie',
 
 		/**
 		 * Remember me expiration (default: 31 days)
 		 */
-		'expiration' => 86400 * 31,
-	),
+		// 'expiration' => 86400 * 31,
+	// ),
 
 	/**
 	 * Groups as id => array(name => <string>, roles => <array>)
 	 */
-	'groups' => array(
+	// 'groups' => array(
 		/**
 		 * Examples
 		 * ---
@@ -90,12 +90,12 @@ return array(
 		 * 50   => array('name' => 'Moderators', 'roles' => array('user', 'moderator')),
 		 * 100  => array('name' => 'Administrators', 'roles' => array('user', 'moderator', 'admin')),
 		 */
-	),
+	// ),
 
 	/**
 	 * Roles as name => array(location => rights)
 	 */
-	'roles' => array(
+	// 'roles' => array(
 		/**
 		 * Examples
 		 * ---
@@ -114,20 +114,20 @@ return array(
 		 * Global allow by assigning true to a role (use with care!):
 		 *   'super' => true,
 		 */
-	),
+	// ),
 
 	/**
 	 * Salt for the login hash
 	 */
-	'login_hash_salt' => 'put_some_salt_in_here',
+	// 'login_hash_salt' => 'put_some_salt_in_here',
 
 	/**
 	 * $_POST key for login username
 	 */
-	'username_post_key' => 'username',
+	// 'username_post_key' => 'username',
 
 	/**
 	 * $_POST key for login password
 	 */
-	'password_post_key' => 'password',
+	// 'password_post_key' => 'password',
 );
