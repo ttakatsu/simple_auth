@@ -14,14 +14,16 @@ class Controller_Admin extends Controller_Template
 
 		$this->current_user = null;
 
-		foreach (Auth::verified() as $driver)
-		{
-			if (($id = $driver->get_user_id()) !== false)
-			{
-				$this->current_user = Model_User::find($id[1]);
-			}
-			break;
-		}
+//		foreach (Auth::verified() as $driver)
+//		{
+//			if (($id = $driver->get_user_id()) !== false)
+//			{
+//				$this->current_user = Model_User::find($id[1]);
+//			}
+//			Log::debug('id: '.$id, __METHOD__);
+//			break;
+//		}
+//		Log::debug('count verified:'.count(Auth::verified()), __METHOD__);
 
 		// Set a global variable so views can use it
 		View::set_global('current_user', $this->current_user);
@@ -45,15 +47,15 @@ class Controller_Admin extends Controller_Template
 
 			if ($val->run()) {
 				if ( ! Auth::check()) {
-					if (Auth::login()) {
+					if (Auth::login(Input::post('email'), Input::post('password'))) {
 						// assign the user id that lasted updated this record
 						foreach (Auth::verified() as $driver)
 						{
 							if (($id = $driver->get_user_id()) !== false)
 							{
 								// credentials ok, go right in
-								$current_user = Model_User::find($id[1]);
-								Session::set_flash('success', e('Welcome, '.$current_user->username));
+//								$current_user = Model_User::find($id[1]);
+//								Session::set_flash('success', e('Welcome, '.$current_user->username));
 								Response::redirect('admin');
 							}
 						}
@@ -67,6 +69,15 @@ class Controller_Admin extends Controller_Template
 
 		$this->template->title = 'Login';
 		$this->template->content = View::forge('admin/login', ['val' => $val], false);
+	}
+
+	/**
+	 * The logout action.
+	 */
+	public function action_logout()
+	{
+		Auth::logout();
+		Response::redirect('admin');
 	}
 
 	/**
