@@ -5,7 +5,7 @@ RUN set -x && \
     apt-get -y update && \
     apt-get install -y libmcrypt-dev libzip-dev && \
     pecl channel-update pecl.php.net && \
-    pecl install apcu-4.0.11 redis && \
+    pecl install apcu-4.0.11 redis-4.3.0 && \
     docker-php-ext-enable apcu redis && \
     NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
     docker-php-ext-install -j${NPROC} pdo_mysql mcrypt zip && \
