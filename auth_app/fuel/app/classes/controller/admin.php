@@ -55,7 +55,8 @@ class Controller_Admin extends Controller_Template
 							{
 								// credentials ok, go right in
 //								$current_user = Model_User::find($id[1]);
-//								Session::set_flash('success', e('Welcome, '.$current_user->username));
+								$user_name = Auth::get_screen_name();
+								Session::set_flash('success', e('Welcome, '.$user_name));
 								Response::redirect('admin');
 							}
 						}
@@ -77,6 +78,7 @@ class Controller_Admin extends Controller_Template
 	public function action_logout()
 	{
 		Auth::logout();
+		Session::set_flash('success', 'Logout');
 		Response::redirect('admin');
 	}
 
@@ -87,5 +89,11 @@ class Controller_Admin extends Controller_Template
 	{
 		$this->template->title = 'Dashboard';
 		$this->template->content = View::forge('admin/dashboard');
+	}
+
+	public function action_info()
+	{
+		$this->template = '';
+		phpinfo();
 	}
 }
