@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Class Controller_Auth
+ */
 class Controller_Auth extends Controller_Template
 {
 	public $template = 'admin/template';
@@ -10,8 +12,7 @@ class Controller_Auth extends Controller_Template
 		parent::before();
 
 		$this->current_user = Model_Crud::forge();
-//		$this->current_user->username = Auth::get_screen_name();
-		$this->current_user->username = 'hoge';
+		$this->current_user->username = Auth::get_screen_name();
 
 		// Set a global variable so views can use it
 		View::set_global('current_user', $this->current_user);
@@ -56,7 +57,7 @@ class Controller_Auth extends Controller_Template
 			}
 		}
 
-		$this->template->title = 'Register';
+		$this->template->title = 'Auth/Register';
 		$this->template->content = View::forge('auth/register')->set('val', $val, false);
 	}
 
@@ -68,4 +69,38 @@ class Controller_Auth extends Controller_Template
 				\Auth::instance()->create_user('admin', 'admin', 'admin@example.org', $group_id_admin, array('fullname' => 'System administrator'));
 			}
 	 */
+
+	/**
+	 * index action
+	 */
+	public function action_index()
+	{
+		$auth = [
+			'is_login' => Auth::check(),
+		];
+
+		$instance_id = Auth::get_id();
+		$auth['instance_id'] = $instance_id;
+
+		// ログインしているユーザーID
+		$id_info = Auth::get_user_id();
+		$auth['user_id'] = var_export($id_info, true);
+
+		// Session
+		$session_data = Session::get();
+		$auth['session_data'] = $session_data;
+
+
+		$this->template->title = 'Auth';
+		$this->template->content = View::forge('auth/index')->set('auth', $auth);
+	}
+
+	public function action_session()
+	{
+
+
+
+		$this->template->title = 'Auth/session';
+		$this->template->content = 'Session start!';
+	}
 }
